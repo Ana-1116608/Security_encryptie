@@ -26,3 +26,15 @@ def decrypt(token):
     nonce = data[:12]
     ciphertext = data[12:]
     return aesgcm.decrypt(nonce, ciphertext, None).decode()
+
+print("1 = encrypt, 2 = decrypt")
+keuze = input("kies:")
+
+if keuze == "1":
+    tekst = input ("Tekst")
+    print(encrypt(tekst))
+elif keuze == "2":
+    token = input("encrypt tekst")
+    print (decrypt(token))
+else:
+    print("Ongeldige keuze")
