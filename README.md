@@ -55,13 +55,12 @@ Ik heb gekozen voor AES (Advanced Encryption Standard) als mijn encryptiealgorit
 
 
 # Implementatie
-In de implementatie heb ik gebruik gemaakt van de cryptography library in Python. Deze heeft een eenvoudige interface voor het gebruik van AES. De library zorgt ook voor een goede afhandeling van sleutels en initialisatie vectoren (IV's), wat belangrijk is voor de veiligheid van de encryptie. Ik heb deze geimport op code regel 1. 
+Voor de implementatie heb ik de cryptography library in Python gebruikt. Deze heeft een eenvoudige interface voor AES, waardoor ik zelf geen crypto hoef te schrijven. De library genereert een veilige, willekeurige sleutel voor me, maar het opslaan van die sleutel en het maken van een nonce moet ik zelf regelen. Ik importeer de library op regel 1.
 
-Ik heb daarna een secret key bestand gemaakt waarin de gegenereerde sleutel is opgeslagen. deze heb ik in de gitignore gezet zodat deze niet per ongeluk geüpload wordt.
+Als eerste heb ik een if-else geschreven voor de sleutel. Bestaat het bestand secret.key al, dan lees ik de sleutel daaruit. Bestaat het nog niet, dan genereer ik een nieuwe sleutel van 256 bit en sla ik die op in secret.key. Zo gebruikt de tool bij elke run dezelfde sleutel, waardoor ik ook een oude tekst nog kan ontsleutelen. Het bestand secret.key heb ik in de .gitignore gezet zodat het niet per ongeluk op GitHub terechtkomt.
 
-ik heb daarna de eerste if-else statment geschreven voor het generen van een secret key. Deze word opgeroepen als het bestand nog niet bestaat.
+Daarna heb ik de encrypt functie geschreven. Deze neemt de plaintext als input en maakt elke keer een nieuwe, willekeurige nonce van 12 bytes. Die nonce zorgt ervoor dat dezelfde tekst nooit twee keer dezelfde ciphertext oplevert, en hij mag nooit hergebruikt worden met dezelfde sleutel. De nonce is niet geheim, dus ik plak hem voor de ciphertext en zet het geheel om met base64. Base64 gebruik ik omdat versleutelde data uit binaire bytes bestaat, en zo wordt het gewone tekst die de gebruiker kan kopiëren. De decrypt functie doet het omgekeerde: eerst base64 terug naar bytes, dan de eerste 12 bytes als nonce en de rest als ciphertext, en daarmee krijg ik de oorspronkelijke tekst terug.
 
-Daarna heb ik de encryptie functie geschreven. Deze neemt de plaintext en de secret key als input en geeft de ciphertext terug. Vervolgens heb ik de decryptie functie geschreven, die de ciphertext en de secret key als input neemt en de oorspronkelijke plaintext teruggeeft. Ik heb hiervoor beide base 64 toegepast. Base 64 wordt gebruikt om binaire data leesbaar te maken in mensen tekst.
 
 Daarna heb ik de input/output functionaliteit toegevoegd, zodat gebruikers hun teksten kunnen versleutelen en ontsleutelen via de console. Ik heb ze hierbij 2 keuzes gegeven: 1 voor encryptie en 2 voor decryptie. Als je het bestand runt kan je kiezen optie 1 of 2 kies encryptie optie en voer de tekst in die je wilt versleutelen. kopieer de uitvoer en gebruik deze als invoer voor de decryptie optie.
 
