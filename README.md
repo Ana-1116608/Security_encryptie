@@ -50,5 +50,7 @@ Er word al jaren geprobeerd deze te breken en als er zwakke plekken zijn worden 
 een eigen algoritme bedenken is gevaarlijk, omdat je zelfs als ervaren ontwikkelaar fouten maakt die je zelf niet ziet.
 
 
+# Mijn encryptiealgoritme keuze
+Ik heb gekozen voor AES (Advanced Encryption Standard) als mijn encryptiealgoritme. Daarna kon ik kiezen tussen 3 versies hiervan de AES-128, AES-192 en de AES-256. Omdat ik een applicatie ga maken waarbij gebruikers makkelijk hun teksten kunnen versleutelen en ontsleuten heb ik gekzoen voor de AES-256 Deze heeft 256 bits. Ik heb gekzoen voor deze omdat deze de meeste bits heeft dus de meeste sleutel combinaties. Ook is dit de meest veiligste sleutel van allemaal. Hij is wel wat trager dan de andere 2 door de wiskundige berekeningen die hij moet maken maar hij is wel het veiligst. Ik zet dus veiligheod boven snelheid met deze keuze 
 
 
