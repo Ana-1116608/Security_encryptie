@@ -54,3 +54,15 @@ een eigen algoritme bedenken is gevaarlijk, omdat je zelfs als ervaren ontwikkel
 Ik heb gekozen voor AES (Advanced Encryption Standard) als mijn encryptiealgoritme. Daarna kon ik kiezen tussen 3 versies hiervan de AES-128, AES-192 en de AES-256. Omdat ik een applicatie ga maken waarbij gebruikers makkelijk hun teksten kunnen versleutelen en ontsleuten heb ik gekzoen voor de AES-256 Deze heeft 256 bits. Ik heb gekzoen voor deze omdat deze de meeste bits heeft dus de meeste sleutel combinaties. Ook is dit de meest veiligste sleutel van allemaal. Hij is wel wat trager dan de andere 2 door de wiskundige berekeningen die hij moet maken maar hij is wel het veiligst. Ik zet dus veiligheod boven snelheid met deze keuze 
 
 
+# Implementatie
+In de implementatie heb ik gebruik gemaakt van de cryptography library in Python. Deze heeft een eenvoudige interface voor het gebruik van AES. De library zorgt ook voor een goede afhandeling van sleutels en initialisatie vectoren (IV's), wat belangrijk is voor de veiligheid van de encryptie. Ik heb deze geimport op code regel 1. 
+
+Ik heb daarna een secret key bestand gemaakt waarin de gegenereerde sleutel is opgeslagen. deze heb ik in de gitignore gezet zodat deze niet per ongeluk geüpload wordt.
+
+ik heb daarna de eerste if-else statment geschreven voor het generen van een secret key. Deze word opgeroepen als het bestand nog niet bestaat.
+
+Daarna heb ik de encryptie functie geschreven. Deze neemt de plaintext en de secret key als input en geeft de ciphertext terug. Vervolgens heb ik de decryptie functie geschreven, die de ciphertext en de secret key als input neemt en de oorspronkelijke plaintext teruggeeft. Ik heb hiervoor beide base 64 toegepast. Base 64 wordt gebruikt om binaire data leesbaar te maken in mensen tekst.
+
+Daarna heb ik de input/output functionaliteit toegevoegd, zodat gebruikers hun teksten kunnen versleutelen en ontsleutelen via de console. Ik heb ze hierbij 2 keuzes gegeven: 1 voor encryptie en 2 voor decryptie. Als je het bestand runt kan je kiezen optie 1 of 2 kies encryptie optie en voer de tekst in die je wilt versleutelen. kopieer de uitvoer en gebruik deze als invoer voor de decryptie optie.
+
+Ook heb ik hiervoor een foutmelding toegevoegd voor het geval de gebruiker een ongeldige keuze maakt of als de decryptie mislukt.
