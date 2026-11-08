@@ -1,6 +1,7 @@
 from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 import os 
 import base64
+from cryptography.exceptions import InvalidTag
 
 
 
@@ -35,6 +36,11 @@ if keuze == "1":
     print(encrypt(tekst))
 elif keuze == "2":
     token = input("encrypt tekst")
-    print (decrypt(token))
+    try:
+        print(decrypt(token))
+    except (InvalidTag, ValueError):
+        print("Mislukt verkeerde sleutel of tekst")
 else:
     print("Ongeldige keuze")
+
+
