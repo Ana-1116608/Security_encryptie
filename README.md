@@ -65,3 +65,19 @@ Daarna heb ik de encrypt functie geschreven. Deze neemt de plaintext als input e
 Daarna heb ik de input/output functionaliteit toegevoegd, zodat gebruikers hun teksten kunnen versleutelen en ontsleutelen via de console. Ik heb ze hierbij 2 keuzes gegeven: 1 voor encryptie en 2 voor decryptie. Als je het bestand runt kan je kiezen optie 1 of 2 kies encryptie optie en voer de tekst in die je wilt versleutelen. kopieer de uitvoer en gebruik deze als invoer voor de decryptie optie.
 
 Ook heb ik hiervoor een foutmelding toegevoegd voor het geval de gebruiker een ongeldige keuze maakt of als de decryptie mislukt.
+
+# Sleutelbeheer
+De sleutel word gegenenereed met de cryptography libary die een willekeurige sleutel ban 256 bits maakt. Deze sleutel word opgeslagen in het bestand secret.key. Ik heb deze in de gitignore gezet zodat andere hier geen toegang tot hebben op Github. Voor uitwisseling heeft de ontvanger dezelfde sleutel nodig. Dit doe ik niet via de applicatie maar hier buiten bijvoorbeeld persoonlijk geven.
+
+# Reflectie van kerckhoff's Principe
+Mijn applicatie volgt het principe van Kerckhoffs door gebruik te maken van een openbaar en goed getest algoritme AES-256-GCM en door de geheimhouding van de sleutel. Het enige geheim is de sleutel in secret.key. Zelfs als een aanvaller precies weet hoe mijn tool werkt kan hij zonder die sleutel niets ontsleutelen. Daar zit ook het zwakke punt de hele veiligheid hangt af van het geheimhouden van secret.key. Dat is precies wat het  kerckhoff's Principe  zegt en het laat zien dat goed sleutelbeheer even belangrijk is als het algoritme zelf.
+
+
+# Hoe werkt mijn applicatie 
+Mijn applicatie is een command-line tool in Python waarmee je teksten kunt encrypten en decrypten. Ik heb hierbij AES-256-GCM gebruikt. Om hem te gebruiken moet je eerst een libary installeren dit doe je met pip pip install cryptography. Daarna start je de tool met python3 cryptotool.py. Bij het opstarten
+
+Bij het opstarten controleert de tool of er al een bestand secret.key bestaat. Zo niet, dan genereert hij een nieuwe sleutel van 256 bit en slaat die daarin op. Daarna krijgt de gebruiker de keuze tussen 1 voor versleutelen en 2 voor ontsleutelen.
+
+In je terminal krijg je dan 2 keuzes te zien:  1= encrypt en 2= decrypt als je encrypt kiest moet je de tekst invoeren die je wilt versleutelen. Hiervan komt een output kopieer deze en run de applicatie opnieuw, kies decrypt en plak de output als invoer.
+
+Als de gebruiker een ongeldige keuze maakt of als de decryptie mislukt, krijgt hij een foutmelding te zien.
